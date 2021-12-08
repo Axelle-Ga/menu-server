@@ -5,9 +5,9 @@ jobs:
   dire_bonjour:
     runs-on: ubuntu-20.04
     steps:
-      - run:
+      - run: |
          sudo apt-get update
-         sudo apt-get install cowsay -y # Liste les fichier du répertoire courant
+         sudo apt-get install cowsay -y
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: List files in the repository
