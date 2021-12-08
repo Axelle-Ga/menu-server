@@ -6,6 +6,7 @@
   <groupId>com.cicdlectures</groupId>
   <artifactId>menuserver</artifactId>
   <version>1.0-SNAPSHOT</version>
+
   <properties>
     <!-- Encodage UTF8 -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -13,4 +14,24 @@
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>2.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>2.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.22</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
 </project>
