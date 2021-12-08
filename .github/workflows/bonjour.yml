@@ -11,4 +11,4 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: cat README.md
+      - run: cat README.md | cowsay
