@@ -4,6 +4,8 @@ on:
 jobs:
   dire_bonjour:
     runs-on: ubuntu-20.04
+    container:
+      image: ghcr.io/cicd-lectures/gitpod:latest
     steps:
       - run: |
          sudo apt-get update
