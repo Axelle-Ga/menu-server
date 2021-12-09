@@ -6,3 +6,4 @@ import com.cicdlectures.menuserver.model.Menu;
 
 public interface MenuRepository extends CrudRepository<Menu, Long> {
 }
+
