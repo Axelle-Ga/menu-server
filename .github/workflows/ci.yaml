@@ -9,6 +9,7 @@ jobs:
       with:
         distribution: 'zulu' # See 'Supported distributions' for available options
         java-version: '11'
+        cache: 'maven'
     - run: mvn verify
     - uses: actions/upload-artifact@v2
       with:
