@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.cicdlectures.menuserver.dto.MenuDto;
 import com.cicdlectures.menuserver.repository.MenuRepository;
@@ -47,7 +48,14 @@ public class MenuController {
   }
   
   @DeleteMapping(path = "/menus/{id}") 
-  void deleteMenu (@PathVariable Long id) {
-    menuRepository.deleteById(id);
+  public ResponseEntity<Long> deleteMenu(@PathVariable Long id) {
+    if (!menuRepository.existsById(id)) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);    
+    }
+    else{
+      menuRepository.deleteById(id);
+    }
+
+    return new ResponseEntity<>(id, HttpStatus.OK);
   }
 }
