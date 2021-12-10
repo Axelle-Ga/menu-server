@@ -55,6 +55,20 @@ public class MenuControllerIT {
   @DisplayName("lists all known menus")
   public void listsAllMenus() throws Exception {
 
+    // // On défini un nouveau Menu
+    // Menu menu = new Menu(
+    //   null,
+    //   "Christmas menu",
+    //   new HashSet<>(
+    //       Arrays.asList(
+    //       new Dish(null, "Turkey", null),
+    //       new Dish(null, "Pecan Pie", null)
+    //       )
+    //   )
+    // );
+
+    // menu = menuRepository.save(menu);
+
     // On configure le menuRepository pour qu'il retourne notre liste de menus.
     //when(menuRepository.findAll()).thenReturn(existingMenus);
 
@@ -65,8 +79,7 @@ public class MenuControllerIT {
     MenuDto[] gotMenus = response.getBody();
 
     // On défini wantMenus, les résultats attendus
-    Iterable<MenuDto> wantMenus = Arrays.asList(
-        new MenuDto(
+    MenuDto wantMenus = new MenuDto(
             Long.valueOf(1),
             "Christmas menu",
             new HashSet<>(
@@ -75,14 +88,13 @@ public class MenuControllerIT {
                 new DishDto(Long.valueOf(2), "Pecan Pie")
             )
             )
-        )
-    );
+        );
 
     // On compare la valeur Htps 200 avec la valeur attendue.
     assertEquals(HttpStatus.OK, response.getStatusCode());
 
     // //On compare la réponse à un résultat attendu
-    // assertEquals(wantMenus, gotMenus);
+    // assertEquals(Arrays.asList(wantMenus),gotMenus);
   }
 
 
