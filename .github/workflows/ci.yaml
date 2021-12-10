@@ -13,7 +13,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: menu-server
-        path: target/menu-server.jarcheckout
+        path: target/menu-server.jar
   tests:
     runs-on: ubuntu-20.04
     steps:
