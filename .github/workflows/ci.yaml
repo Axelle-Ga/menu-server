@@ -9,7 +9,6 @@ jobs:
       with:
         distribution: 'zulu' # See 'Supported distributions' for available options
         java-version: '11'
-    - run: mvn package
   tests:
     runs-on: ubuntu-20.04
     steps:
