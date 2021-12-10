@@ -10,7 +10,7 @@ jobs:
         distribution: 'zulu' # See 'Supported distributions' for available options
         java-version: '11'
         cache: 'maven'
-    - run: mvn package
+    - run: mvn clean package
     - uses: actions/upload-artifact@v2
       with:
         name: menu-server
