@@ -15,4 +15,17 @@ jobs:
       with:
         name: menu-server
         path: target/menu-server.jar
-    
+  release:
+    runs-on: ubuntu-20.04
+    needs: build
+    if: contains(github.ref, 'ref/Tags/v*')
+    steps:
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            LICENSE.txt
+            *.jar
