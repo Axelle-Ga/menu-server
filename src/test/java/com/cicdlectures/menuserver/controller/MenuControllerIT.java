@@ -51,12 +51,12 @@ public class MenuControllerIT {
         // Défini une liste de menus avec un menus.
         Menu menu =
             new Menu(
-            Long.valueOf(1),
+            null,
             "Christmas menu",
             new HashSet<>(
                 Arrays.asList(
-                new Dish(Long.valueOf(1), "Turkey", null),
-                new Dish(Long.valueOf(2), "Pecan Pie", null)
+                new Dish(null, "Turkey", null),
+                new Dish(null, "Pecan Pie", null)
                 )
             )
             );
@@ -71,7 +71,7 @@ public class MenuControllerIT {
         HttpStatus statusCode = response.getStatusCode();
 
          // Défini une liste de menus avec un menus.
-         Iterable<MenuDto> existingMenusDto = Arrays.asList(
+         MenuDto existingMenusDto =
             new MenuDto(
             Long.valueOf(1),
             "Christmas menu",
@@ -81,13 +81,12 @@ public class MenuControllerIT {
                 new DishDto(Long.valueOf(2), "Pecan Pie")
                 )
             )
-            )
-        );
+            );
 
 
         // Assert that correct status code is returned.
         assertEquals(statusCode /*actual value*/, HttpStatus.OK /*expected value*/, "Correct status code returned");
-        assertEquals(gotMenus /*actual value*/, existingMenusDto /*expected value*/, "Correct menu returned");
+        assertEquals(gotMenus[0] /*actual value*/, existingMenusDto /*expected value*/, "Correct menu returned");
         
 
     }
