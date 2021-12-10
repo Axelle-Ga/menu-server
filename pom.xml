@@ -1,45 +1,44 @@
-<!-- pom.xml -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <!-- Insert content here  -->
-  <groupId>com.cicdlectures</groupId>
-  <artifactId>menuserver</artifactId>
-  <version>1.0-SNAPSHOT</version>
+    <groupId>com.cicdlectures</groupId>
+    <artifactId>menuserver</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-  <parent>
+    <parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
       <version>2.6.0</version>
-  </parent>
+    </parent>
 
-  <properties>
-    <!-- Encodage UTF8 -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- Version compiler -->
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-  </properties>
+    <properties>
+      <java.version>11</java.version>
+    </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-    </dependency>
-    <dependency>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+      <dependency>
+			<groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+      </dependency>
+      <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <scope>runtime</scope>
-    </dependency>
-  </dependencies>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+      </dependency>
+	</dependencies>
 
   <build>
     <finalName>menu-server</finalName>
@@ -48,7 +47,47 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
+        <plugin>
+          <!-- Configure le maven-surefire-plugin -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <!-- Désactive tous les tests pour l'execution par défaut -->
+            <skipTests>true</skipTests>
+          </configuration>
+          <executions>
+            <execution>
+              <!--Crée une première execution pour jouer les tests unitaires -->
+              <id>unit</id>
+              <phase>test</phase>
+              <goals>
+                <goal>test</goal>
+              </goals>
+              <configuration>
+                <skipTests>${skipUnitTests}</skipTests>
+                <!-- Inclue et execute les tests contenus dans les fichiers ayant le suffixe Tests.java-->
+                <includes>
+                  <include>**/*Tests.java</include>
+                </includes>
+              </configuration>
+            </execution>
+            <execution>
+              <!--Crée une seconde execution pour jouer les tests d'integration -->
+              <id>integration</id>
+              <phase>integration-test</phase>
+              <goals>
+                <goal>test</goal>
+              </goals>
+              <configuration>
+                <skipTests>false</skipTests>
+                <includes>
+                  <!-- Inclue et execute les tests contenus dans les fichiers ayant le suffixe IT.java-->
+                  <include>**/*IT.java</include>
+                </includes>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
     </plugins>
   </build>
-
 </project>
